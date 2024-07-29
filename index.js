@@ -28,36 +28,19 @@ const api = ky.create({
 });
 
 const CHECK_RUN_NAME = "Check Bitrise build status";
+const CONTEXT = "ci/branch-head-commit-status-check";
 
 (async () => {
   const openPrs = await api.get(`repos/${owner}/${repo}/pulls?state=open&per_page=100`).json();
   const headCommits = openPrs.map((pr) => pr.head.sha);
 
-  const checkRuns = await Promise.all(
-    headCommits.map((sha) => api.get(`repos/${owner}/${repo}/commits/${sha}/check-runs`).json())
-  );
-
-  const failedBitriseCheckRuns = checkRuns.reduce(
-    (failedCheckRuns, prCheckRuns) => {
-      prCheckRuns.check_runs.forEach((checkRun) => {
-        if (checkRun.name === CHECK_RUN_NAME && checkRun.conclusion === "failure") {
-          failedCheckRuns.push(checkRun);
-        }
+  await Promise.all(
+    headCommits.map((sha) => {
+      return api.post(`repos/${owner}/${repo}/statuses/${sha}`, {
+        context: CONTEXT,
+        state: "success",
+        description: "Branch head commit status check succeeded",
       });
-      return failedCheckRuns;
-    },
-    []
+    })
   );
-
-  // rerun failed check run jobs
-  if (failedBitriseCheckRuns.length > 0) {
-    await Promise.all(
-      failedBitriseCheckRuns
-        .map((checkRun) => {
-          console.log(`Rerunning check run ${checkRun.id}`);
-          return api.post(`repos/${owner}/${repo}/actions/jobs/${checkRun.id}/rerun`).json()
-        })
-    );
-  }
-
 })();
