@@ -28,7 +28,7 @@ const api = ky.create({
 });
 
 const CHECK_RUN_NAME = "Check Bitrise build status";
-const CONTEXT = "ci/branch-head-commit-status-check";
+const CONTEXT = "ci/trunk-health";
 
 (async () => {
   const openPrs = await api.get(`repos/${owner}/${repo}/pulls?state=open&per_page=100`).json();
