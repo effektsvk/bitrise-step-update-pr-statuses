@@ -1,0 +1,11 @@
+{
+  "name": "bitrise-step-update-pr-statuses",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Technology Studio",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "ky": "^1.4.0"
+  }
+}
