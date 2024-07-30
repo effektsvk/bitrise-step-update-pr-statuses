@@ -1,6 +1,6 @@
-# Update build info on commit
+# Update PR Statuses
 
-Updates status and build link on a given commit
+Updates PR statuses on all open PRs
 
 
 ## How to use this Step

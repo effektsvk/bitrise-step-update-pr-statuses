@@ -12,7 +12,6 @@ const api = ky.create({
   },
 });
 
-const CHECK_RUN_NAME = "Check Bitrise build status";
 const CONTEXT = "ci/trunk-health";
 
 (async () => {
