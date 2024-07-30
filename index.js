@@ -17,13 +17,16 @@ const CONTEXT = "ci/trunk-health";
 (async () => {
   const openPrs = await api.get(`repos/${owner}/${repo}/pulls?state=open&per_page=100`).json();
   const headCommits = openPrs.map((pr) => pr.head.sha);
+  console.log(`Open PRs: ${openPrs.map((pr) => pr.number).join(", ")}`);
 
   await Promise.all(
     headCommits.map((sha) => {
       return api.post(`repos/${owner}/${repo}/statuses/${sha}`, {
-        context: CONTEXT,
-        state: "success",
-        description: "Branch head commit status check succeeded",
+        json: {
+          context: CONTEXT,
+          state: "success",
+          description: "Branch head commit status check succeeded",
+        },
       });
     })
   );
