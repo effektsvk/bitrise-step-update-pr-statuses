@@ -1,7 +1,7 @@
 import ky from "ky";
 
 const accessToken = process.env.GITHUB_ACCESS_TOKEN;
-const repo = process.env.REPO_NAME;
+const repo = process.env.REPO_SLUG;
 const owner = process.env.REPO_OWNER;
 
 const api = ky.create({
