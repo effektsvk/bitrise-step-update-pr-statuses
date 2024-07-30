@@ -8,11 +8,11 @@
 # - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
 
 title: |-
-  Update build info on commit
+  Update PR statuses
 summary: |
-  Updates status and build link on a given commit
+  Updates PR statuses on all open PRs
 description: |
-  Updates status and build link on a given commit
+  Updates PR statuses on all open PRs
 website: https://github.com/technology-studio/bitrise-step-update-pr-statuses
 source_code_url: https://github.com/technology-studio/bitrise-step-update-pr-statuses
 support_url: https://github.com/technology-studio/bitrise-step-update-pr-statuses/issues
