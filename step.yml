@@ -72,27 +72,19 @@ toolkit:
 
 
 inputs:
-  - COMMMIT_REF: $BITRISE_GIT_COMMIT
-    opts:
-      title: "Commit ref"
-      summary: Commit ref to update build info for
-      is_expand: false
-      is_required: true
   - ACCESS_TOKEN: $GITHUB_ACCESS_TOKEN
     opts:
       title: "Access token"
       summary: GitHub Access token
       is_expand: false
       is_required: true
-  - REPO_NAME: $BITRISEIO_GIT_REPOSITORY_SLUG
-    opts:
-      title: "Repo name"
-      summary: Name of the repo to update
-      is_expand: false
-      is_required: true
   - REPO_OWNER: $BITRISEIO_GIT_REPOSITORY_OWNER
     opts:
-      title: "Repo owner"
-      summary: Owner of the repo to update
-      is_expand: false
+      title: "Repository Owner"
+      summary: Repository Owner
+      is_required: true
+  - REPO_SLUG: $BITRISEIO_GIT_REPOSITORY_SLUG
+    opts:
+      title: "Repository Name"
+      summary: Repository Name
       is_required: true

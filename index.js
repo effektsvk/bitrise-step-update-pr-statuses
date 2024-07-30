@@ -4,21 +4,6 @@ const accessToken = process.env.GITHUB_ACCESS_TOKEN;
 const repo = process.env.REPO_NAME;
 const owner = process.env.REPO_OWNER;
 
-if (!accessToken) {
-  console.error("No access token provided");
-  process.exit(1);
-}
-
-if (!repo) {
-  console.error("No repo provided");
-  process.exit(1);
-}
-
-if (!owner) {
-  console.error("No owner provided");
-  process.exit(1);
-}
-
 const api = ky.create({
   prefixUrl: "https://api.github.com",
   headers: {
